@@ -1,0 +1,31 @@
+#!/bin/bash
+#system aliases
+alias ll='ls -l'
+alias lt='ls -ltra'
+alias la='ls -la'
+
+#buildout & related
+alias bb='bin/buildout -Nvvt 5'
+alias virtualenv='virtualenv --clear --no-site-packages --never-download'
+
+# plone instance commands
+alias is='bin/instance start'
+alias bis='bin/instance start'
+alias ik='bin/instance stop'
+alias it='bin/instance test'
+alias ifg='bin/instance fg'
+alias bi='bin/instance fg'
+alias li='less bin/instance' 
+alias bd='bin/develop $*'
+alias fr='fullrelease'
+
+# dev aliases
+alias w='cd ~/workspace'
+alias cdp='cd /opt/plone/; ll'
+alias gitalias="git config --get-regexp alias | cut -d '.' -f 2"
+
+#svn aliases
+alias ss='svn st -u'
+alias up='svn up'
+alias ci='svn ci'
+#alias l='ls -CF'

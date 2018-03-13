@@ -1,0 +1,58 @@
+[pager]
+    ; disable the use of the pager (less) when running the git show command
+    show = false
+[push]
+    default = simple
+[show]
+    tool = vimdiff
+[diff]
+    tool = vimdiff
+[difftool]
+    tool = vimdiff
+    prompt = false
+[merge]
+    tool = vimdiff
+[alias]
+    st = status
+    undo = checkout
+    ci = commit
+    ca = commit -a
+    st = status
+    rv = remote -v
+
+    ;svn like
+    info = remote -v
+    ; adding files
+    ai = add -i
+    ; branches
+    b = branch
+    ba = branch -a 
+    cb = checkout -b
+    switch = checkout -b
+    ; tracking of remote branches
+    track = "!f() { git branch -u origin/$(git symbolic-ref --short HEAD); };f"
+    ;showtool
+    ;showtool = "!sh -c 'if [ -z \$1 ]; then REVISION="HEAD"; else REVISION="\$1"; fi; git difftool \$REVISION~ \$REVISION' -"
+    ; diff
+    ; use --staged to show also the staged changes
+    vdiff = difftool 
+    sdiff = diff --staged
+    vsdiff = difftool --staged
+    ; submodules clone
+    sclone = "!f() { git clone --recursive $1;};f"
+    cl = "!f() { git clone --recursive $1;};f"
+    ; working with remote repositories
+    rdiff = "!f() { git diff $(git symbolic-ref --short HEAD) origin/$(git symbolic-ref --short HEAD);};f"
+    vrdiff = "!f() { git difftool $(git symbolic-ref --short HEAD) origin/$(git symbolic-ref --short HEAD);};f"
+    stapush = "!f() { git cherry -v origin/$(git symbolic-ref --short HEAD);};f"
+    ;default, no paging because pager.show = false
+    vstapush = "!f() { for comm in $(git cherry -v origin/$(git symbolic-ref --short HEAD) | cut -d ' ' -f 2); do  git show $comm; done;}; f"
+    ;vstapush = "!f() { for comm in $(git cherry -v origin/$(git symbolic-ref --short HEAD) | cut -d ' ' -f 2); do  echo $comm; done;}; f"
+    ;alternative, if you don't want to disable the pager for git show in every usecase
+    ;vstapush = "!f() { for comm in $(git cherry -v origin/$(git symbolic-ref --short HEAD) | cut -d ' ' -f 2); do  git --no-pager show $comm; done;}; f"
+
+    ;DO NOT USE, broken, but left as example 
+    ;stapush = "!f() { git cherry -v origin/$(git branch | cut -d ' ' -f 2);};f"
+    ;rdiff = "!f() { git diff $(git branch | cut -d ' ' -f 2) origin/$(git branch | cut -d ' ' -f 2);};f"
+    ;rvdiff = "!f() { git difftool $(git branch | cut -d ' ' -f 2) origin/$(git branch | cut -d ' ' -f 2);};f"
+    ;END

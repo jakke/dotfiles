@@ -1,0 +1,3 @@
+[submodule "tmux-zoom"]
+	path = tmux-zoom
+	url = https://github.com/jipumarino/tmux-zoom.git
